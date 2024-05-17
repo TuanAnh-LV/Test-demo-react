@@ -13,18 +13,28 @@ class MyComponent extends React.Component{
     // render ke thua lai react.component
     // state la 1 object
     // this dai dien cho object kieu no giong nhu chi diem den state, this daij cho class
-    //
+    //DRY : don't repeat yourseft
     
+    state ={
+        listUsers: [
+            {id: 1, name:"Tuan Anh", age:"21"},
+            {id: 2, name:"Amh Tuan" , age:"22"},
+            {id: 3, name:" Anh", age:"21"},
+        ]
+    }
+
     render(){
-        const myInfor = ['ab','c','c']
-        
+        // const myInfor = ['ab','c','c']
+
         return(    
             <div>            
                 <UserInfor></UserInfor>
                 <br/> <br/>
-                <DisplayInfor name="Hoi dan IT" age = "21"/>
-                <hr/>
-                <DisplayInfor name="Tuan Anh" age = "21" myInfor={myInfor}/>
+                {/* <DisplayInfor name="Hoi dan IT" age = "21"/>
+                <hr/> */}
+                {/* <DisplayInfor name="Tuan Anh" age = "21" myInfor={myInfor}/>  no se hien mang trong component*/} 
+                <DisplayInfor 
+                listUsers={this.state.listUsers}/>
             </div>
 
         );
