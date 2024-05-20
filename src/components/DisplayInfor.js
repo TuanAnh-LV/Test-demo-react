@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './DisplayInfor.scss';
 import logo from './../logo.svg'
 
@@ -134,10 +134,26 @@ import logo from './../logo.svg'
 const DisplayInfor = (props) =>{
     //chuyen class sang function
     // doi voi function k con this.props nua
+    
     const {listUsers} = props;
+    
+    //[Ten bien muon dat, ham(cap nhat lai su doi, keyword set de cap nhat lai gtri cua no) ]
+    //con goi toi useState de su dung
 
+    const[isShowListUser, setShowHideListUser] = useState(true);
+    //Destructuring assignment
+    const handleShowHideListUser = () => {
+        
+        setShowHideListUser(!isShowListUser);
+    }
+
+
+    
     return(
         <div className="display-info-container">
+            <span onClick={()=>handleShowHideListUser()}>
+                
+                {isShowListUser === true?"Hide list User" : "Show list user"}</span>
             {/* <img src={logo} />
             <div>
                 <span onClick={() => {this.handleShowHide()}}>
@@ -147,7 +163,7 @@ const DisplayInfor = (props) =>{
             </div> */}
             {/* true thi hien ra,false se an, co nghia cai bien nay la true  */}
         {/* {this.state.isShowListUser  */}
-        {true && 
+        {isShowListUser && 
         <div>
 
 {/* doan code thay cho phep hien ten nguoi dung bang .map se in ra 3 phan tu da khai bao, tao ra 1 array moi */}
