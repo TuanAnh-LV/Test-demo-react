@@ -3,6 +3,14 @@ import './DisplayInfor.scss';
 import logo from './../logo.svg'
 
 class DisplayInfor extends React.Component{
+    // chay truoc render
+    constructor(props){
+        console.log('>>> call contructor: 0')
+        super(props)
+        this.state ={
+            isShowListUser:true
+        }
+    }
 
     handleShowHide = () => {
         // ! dau togle co nghia la dau on off
@@ -16,6 +24,25 @@ class DisplayInfor extends React.Component{
     state = {
         isShowListUser: true
     }
+
+    componentDidMount(){
+        // co the goi API
+        console.log('>>>> call me component did mount')
+        setTimeout(()=>{
+            // dung de doi title khi chuyen sang trang khac
+            document.title = 'Tuan anh depz';
+        },3000);
+    }
+
+    // can phai tham chieu dau vao
+    componentDidUpdate(preProps,preState, snapshot){
+        console.log('>>>> call me component did Update',this.props,preProps)
+        // preProps se dua lai cho chung ta dung, so sanh qua khu va hien tai
+        if(this.props.listUsers !== preProps.listUsers){
+            alert('You got 5 users')
+        }
+        // neu list dat toi 5 user thi bao loi
+    }
 render(){
     //destructuring array/objct
     // 1.  const {age , name} = this.props;
@@ -23,7 +50,7 @@ render(){
     // console.log(listUsers)
     //props => viet tac Properties duoc goi la tai san, boi vi no chuyen tu thang cha cho thang con
     // console.log(this.props)
-
+    console.log('>>>> call me render')
     return(
         <div className="display-info-container">
             {/* <img src={logo} /> */}
