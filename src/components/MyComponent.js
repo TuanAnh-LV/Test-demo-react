@@ -40,7 +40,8 @@ class MyComponent extends React.Component{
         // const myInfor = ['ab','c','c']
 
         return(    
-            <div>            
+            <>  
+            <div className='a'>            
                 <AddUserInfor
                 //   co dau dong mo () cho biet dang tham chieu toi function , nguoc lai la goi toi function do co nghia thuc thi ngay tai day
                 //  chu k phai truyen tu thang cha sang thang con* 
@@ -54,6 +55,12 @@ class MyComponent extends React.Component{
                 listUsers={this.state.listUsers}
                 />
             </div>
+            <div className='b'> 
+
+            </div>
+
+
+           </>
 
         );
     }

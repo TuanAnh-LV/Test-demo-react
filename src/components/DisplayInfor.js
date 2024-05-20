@@ -1,5 +1,7 @@
 import React from "react";
 import './DisplayInfor.scss';
+import logo from './../logo.svg'
+
 class DisplayInfor extends React.Component{
 
     handleShowHide = () => {
@@ -24,6 +26,7 @@ render(){
 
     return(
         <div className="display-info-container">
+            <img src={logo} />
             <div>
                 <span onClick={() => {this.handleShowHide()}}>
                     
