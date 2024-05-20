@@ -26,7 +26,7 @@ class MyComponent extends React.Component{
     handleAddNewUser=(userObj) =>{
        console.log(">>>> check date from parent:",userObj)
        this.setState({
-        listUsers: [userObj,...this.state.listUsers]
+        listUsers: [userObj,...this.state.listUsers] // them vao dau danh sach
        })
 
        // : let listUserClone = [...this.state.listUsers]; (sao chep bien nay sang 1 bien moi)
@@ -34,6 +34,15 @@ class MyComponent extends React.Component{
        //c2: let listUser = this.state.listUsers;
        // listUser = listUser.unshift(userObj);
        //this.setState({ listUsers:listUserNew})
+    }
+
+    handleDeleteUser =(userId)=>{
+      let  listUserClone = this.state.listUsers;
+      listUserClone = listUserClone.filter(item => item.id !==userId );
+      this.setState({
+        listUsers: listUserClone
+      })
+      //filter se tra ra 1 mang moi, de thoa dieu kien truyen vao
     }
 
     render(){
@@ -53,6 +62,7 @@ class MyComponent extends React.Component{
                 {/* <DisplayInfor name="Tuan Anh" age = "21" myInfor={myInfor}/>  no se hien mang trong component*/} 
                 <DisplayInfor 
                 listUsers={this.state.listUsers}
+                handleDeleteUser={this.handleDeleteUser}
                 />
             </div>
             <div className='b'> 

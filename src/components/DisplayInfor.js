@@ -26,7 +26,7 @@ render(){
 
     return(
         <div className="display-info-container">
-            <img src={logo} />
+            {/* <img src={logo} /> */}
             <div>
                 <span onClick={() => {this.handleShowHide()}}>
                     
@@ -69,8 +69,13 @@ render(){
     return(
         // ? the hien dieu kien neu true la green ,false red 
                 <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
+                    <div>
                     <div> My name's  {user.name}</div>
                     <div>My age's {user.age} </div>
+                    </div>
+                    <div>
+                        <button onClick={()=> this.props.handleDeleteUser(user.id)}>Delete</button>
+                    </div>
                     <hr/>
                 </div>
             )
