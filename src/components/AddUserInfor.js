@@ -1,6 +1,6 @@
 import React from "react";
 
-class UserInfor extends React.Component{
+class AddUserInfor extends React.Component{
 
     state ={
         name: 'Hi hello',
@@ -53,6 +53,12 @@ class UserInfor extends React.Component{
     handleOnSumbit =(event) =>{
         event.preventDefault();//ngan chan reload lai trang
         console.log(this.state)
+        //ben nay do dang thuc thi no nen co dau dong mo()
+        this.props.handleAddNewUser({
+            id: Math.floor((Math.random()*100)+1) + '-random',
+            name:this.state.name,
+            age:this.state.age
+        });
         
         // alert('me') //khi minh nhan enter no se hien ra thong bao la da luu thong tin 
     }
@@ -85,4 +91,4 @@ class UserInfor extends React.Component{
 
 }
 
-export default UserInfor;
+export default AddUserInfor;

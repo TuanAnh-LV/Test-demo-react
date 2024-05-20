@@ -30,7 +30,7 @@ render(){
                     {this.state.isShowListUser === true ? "Hide list user:" : "Show list user:"}
                     </span>
             </div>
-            {/* true thi hien ra,false se an */}
+            {/* true thi hien ra,false se an, co nghia cai bien nay la true  */}
         {this.state.isShowListUser && 
         <div>
 

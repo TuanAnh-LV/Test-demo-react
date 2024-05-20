@@ -5,7 +5,7 @@
 
 
 import React from "react";
-import UserInfor from "./UseInfor";
+import AddUserInfor from "./AddUserInfor";
 import DisplayInfor from "./DisplayInfor";
 class MyComponent extends React.Component{
     //JSX chi dung cho 1 phan tu html, chi co 1 element
@@ -23,18 +23,36 @@ class MyComponent extends React.Component{
         ]
     }
 
+    handleAddNewUser=(userObj) =>{
+       console.log(">>>> check date from parent:",userObj)
+       this.setState({
+        listUsers: [userObj,...this.state.listUsers]
+       })
+
+       // : let listUserClone = [...this.state.listUsers]; (sao chep bien nay sang 1 bien moi)
+       // dau 3 cham dung de tranh bug
+       //c2: let listUser = this.state.listUsers;
+       // listUser = listUser.unshift(userObj);
+       //this.setState({ listUsers:listUserNew})
+    }
+
     render(){
         // const myInfor = ['ab','c','c']
 
         return(    
             <div>            
-                <UserInfor></UserInfor>
+                <AddUserInfor
+                //   co dau dong mo () cho biet dang tham chieu toi function , nguoc lai la goi toi function do co nghia thuc thi ngay tai day
+                //  chu k phai truyen tu thang cha sang thang con* 
+                handleAddNewUser={this.handleAddNewUser}
+                />
                 <br/> <br/>
                 {/* <DisplayInfor name="Hoi dan IT" age = "21"/>
                 <hr/> */}
                 {/* <DisplayInfor name="Tuan Anh" age = "21" myInfor={myInfor}/>  no se hien mang trong component*/} 
                 <DisplayInfor 
-                listUsers={this.state.listUsers}/>
+                listUsers={this.state.listUsers}
+                />
             </div>
 
         );
