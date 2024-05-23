@@ -2,7 +2,7 @@
 // import logo from './logo.svg';
 import './App.scss';
 import Header from './components/Header/Header';
-import { Link } from 'react-router-dom';
+import { Outlet,Link } from 'react-router-dom';
 
 const App = () => {
 
@@ -10,18 +10,19 @@ const App = () => {
   return (
 
     <div className="app-container">
-    <Header/>
-    <div>
-      test link
-      <div>
-        <button >
-          <Link to="/users">go to user page</Link>
-          </button>
-        <button >
-        <Link to="/admin">go to Admin page</Link>
-          </button>
+      <div className='header-container'>
+      <Header/>
+      </div>
+    <div className='main-container'>
+      <div className='sidenav-container'>
+
+      </div>
+      <div className='app-content'>
+        <Outlet/> 
+        {/* se lay du lieu o router element khi chuyen trang se co the thay luon noi dung */}
       </div>
     </div>
+
     </div>
   );
 }
