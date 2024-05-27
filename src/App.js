@@ -13,16 +13,25 @@ const App = () => {
       <div className='header-container'>
       <Header/>
       </div>
+testlink   
+
+
+<div>
+  <button>
+    <Link to='./users'> go to user</Link>
+  </button>
+  <button>
+    <Link to='./admin'> go to admin</Link>
+  </button>
+</div>
     <div className='main-container'>
       <div className='sidenav-container'>
-
       </div>
       <div className='app-content'>
         <Outlet/> 
         {/* se lay du lieu o router element khi chuyen trang se co the thay luon noi dung */}
       </div>
     </div>
-
     </div>
   );
 }
