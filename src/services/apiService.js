@@ -17,7 +17,8 @@ const getAllUsers = () =>{
 
 const postLogin = (userEmail,userPassword)=>{
     return axios.post(`api/login`,
-    {email: userEmail,password: userPassword}
+    {email: userEmail,password: userPassword, delay:5000}
+   
     )
 }
 

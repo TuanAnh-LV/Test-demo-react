@@ -5,29 +5,52 @@ import { postLogin } from '../../services/apiService';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';// tuong navigate
 import { doLogin } from '../../redux/action/userAction';
+import { ImSpinner10 } from "react-icons/im";
 const Login =(props)=>{
 
     const [email,setEmail]=useState("");
     const[password,setPassword]=useState("")
     const navigate = useNavigate();
     const dispatch = useDispatch();// ket noi redux
+  
+const [isLoading, setIsLoading] = useState(false);
+
+const validateEmail = (email) => {
+    return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+  };
+
     const handleLogin = async ()=>{
         //validate
-
+const isValidEmail = validateEmail(email);
+if(!isValidEmail){
+    toast.error('Invalid email')
+    return;
+}
+if(!password){
+    toast.error('Invalid password')
+    return;
+}
+setIsLoading(true);
         //submitapi
         let data = await postLogin(email,password);//do state quanli
         if(data && data.EC === 0){
             dispatch(doLogin(data))
             toast.success(data.EM);
+            setIsLoading(false)
             navigate('/')
         }
 
         if(data && +data.EC !== 0){//bien data string dung + de covert
             toast.error(data.EM)
+            setIsLoading(false);
         }
     }
     return(
-        <div className="login-containercol-4 mx-auto">
+        <div className="login-container">
             <div className='header'>
               <span>Don't have an account yet?</span>
               <button onClick={() => navigate('/register')}> Signup</button>
@@ -58,9 +81,13 @@ const Login =(props)=>{
                    />
                 </div>
                 <span>Forgot Password?</span>
+                
                 <div className='bt-submit'
-                onClick={()=>handleLogin()}>
-                <button>Login to hoi dan IT</button>
+                onClick={()=>handleLogin()} disabled = {isLoading}>
+                    
+                    {isLoading === true && <ImSpinner10 className='loader-icon'/>}
+                <span>Login to hoi dan IT</span>
+
                 </div>
            <div className='text-center'>
             <span onClick={()=>navigate('/')}> &#60;&60;Go back home</span>
