@@ -3,20 +3,25 @@ import './Login.scss';
 import { useNavigate } from 'react-router-dom';
 import { postLogin } from '../../services/apiService';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';// tuong navigate
+import { doLogin } from '../../redux/action/userAction';
 const Login =(props)=>{
 
     const [email,setEmail]=useState("");
     const[password,setPassword]=useState("")
     const navigate = useNavigate();
+    const dispatch = useDispatch();// ket noi redux
     const handleLogin = async ()=>{
         //validate
 
         //submitapi
         let data = await postLogin(email,password);//do state quanli
-        if(data && data.EC !== 0){
+        if(data && data.EC === 0){
+            dispatch(doLogin(data))
             toast.success(data.EM);
             navigate('/')
         }
+
         if(data && +data.EC !== 0){//bien data string dung + de covert
             toast.error(data.EM)
         }
